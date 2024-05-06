@@ -169,7 +169,7 @@ class RestaurantHTTPRequestHandler(BaseHTTPRequestHandler):
 
      total_price = 0
      for ingredient_data in meal_data["ingredients"]:
-        ingredient_quality_str = data.get(ingredient_data["name"], 'high')  # default quality is 'high' if not provided
+        ingredient_quality_str = data.get(ingredient_data["name"], 'high') 
         ingredient_options = ingredient_data.get("options", [])
         ingredient_price = 0
 
@@ -184,7 +184,7 @@ class RestaurantHTTPRequestHandler(BaseHTTPRequestHandler):
         elif ingredient_quality_str == "medium":
             ingredient_price += 0.05  
 
-        total_price += ingredient_price * (ingredient_data.get('quantity', 0) / 1000)  # Adjust price based on quantity
+        total_price += ingredient_price * (ingredient_data.get('quantity', 0) / 1000)  
 
      self._set_headers()
      self.wfile.write(json.dumps({"price": round(total_price, 2)}).encode('utf-8'))
@@ -222,7 +222,7 @@ class RestaurantHTTPRequestHandler(BaseHTTPRequestHandler):
 
             meal_ingredients.append(ingredient_info)
 
-        # If budget is specified, adjust the price accordingly
+        
         if budget is not None:
             total_price = min(total_price, budget)
 
